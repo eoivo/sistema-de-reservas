@@ -11,10 +11,17 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div
+        className="min-h-screen bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/restaurant-background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <Toaster position="top-right" />
         <Navbar />
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto px-4 py-8 bg-transparent">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/reserva" element={<ReservaForm />} />

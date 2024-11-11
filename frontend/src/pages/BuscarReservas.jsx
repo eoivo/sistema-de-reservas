@@ -89,96 +89,108 @@ const BuscarReservas = () => {
   };
 
   return (
-    <div className="buscar-reservas-container">
-      <h2>Buscar Reserva</h2>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h2 className="text-2xl font-bold text-primary-600 mb-4 text-center">
+          Buscar Reserva
+        </h2>
 
-      <form onSubmit={handleSearch} className="space-y-4">
-        <div>
-          <label htmlFor="email" className="block">
-            E-mail
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-2 p-2 border border-gray-300 rounded w-full"
-            placeholder="Digite o e-mail"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="telefone" className="block">
-            Telefone
-          </label>
-          <input
-            type="text"
-            id="telefone"
-            value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
-            className="mt-2 p-2 border border-gray-300 rounded w-full"
-            placeholder="Digite o telefone"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="mt-4 p-2 bg-primary-500 text-white rounded"
-        >
-          Buscar
-        </button>
-      </form>
-
-      {reservas.length > 0 ? (
-        <ul className="mt-6 space-y-4">
-          {reservas.map((reserva) => (
-            <li
-              key={reserva._id}
-              className="border p-4 mb-4 rounded bg-gray-50 shadow-md"
+        <form onSubmit={handleSearch} className="space-y-4">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-semibold"
             >
-              <h3 className="text-lg font-bold text-primary-600">
-                Detalhes da Reserva
-              </h3>
-              <div>
-                <strong>Nome do Cliente:</strong> {reserva.nomeCliente}
-              </div>
-              <div>
-                <strong>Email:</strong> {reserva.email}
-              </div>
-              <div>
-                <strong>Telefone:</strong> {reserva.telefone}
-              </div>
-              <div>
-                <strong>Data:</strong> {formatarData(reserva.data)}
-              </div>
-              <div>
-                <strong>Horário:</strong> {formatarHorario(reserva.horario)}
-              </div>
-              <div>
-                <strong>Status:</strong> {reserva.status}
-              </div>
-              <div>
-                <strong>Número de Pessoas:</strong> {reserva.numeroPessoas}
-              </div>
-              <div>
-                <strong>Observações:</strong>{" "}
-                {reserva.observacoes || "Nenhuma observação"}
-              </div>
-              <div>
-                <strong>Horário previsto para o fim:</strong>{" "}
-                {reserva.horarioFim
-                  ? new Date(reserva.horarioFim).toLocaleTimeString("pt-BR", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })
-                  : "Não especificado"}
-              </div>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div className="mt-6 text-gray-500">Nenhuma reserva encontrada.</div>
-      )}
+              E-mail
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-2 p-2 border border-gray-300 rounded w-full"
+              placeholder="Digite o e-mail"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="telefone"
+              className="block text-gray-700 font-semibold"
+            >
+              Telefone
+            </label>
+            <input
+              type="text"
+              id="telefone"
+              value={telefone}
+              onChange={(e) => setTelefone(e.target.value)}
+              className="mt-2 p-2 border border-gray-300 rounded w-full"
+              placeholder="Digite o telefone"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="mt-4 p-2 w-full bg-primary-600 text-white font-semibold rounded hover:bg-primary-700 transition"
+          >
+            Buscar
+          </button>
+        </form>
+
+        {reservas.length > 0 ? (
+          <ul className="mt-6 space-y-4">
+            {reservas.map((reserva) => (
+              <li
+                key={reserva._id}
+                className="border border-gray-300 p-4 rounded bg-white bg-opacity-90 shadow-md text-gray-800"
+              >
+                <h3 className="text-lg font-bold text-primary-600 mb-2">
+                  Detalhes da Reserva
+                </h3>
+                <div>
+                  <strong>Nome do Cliente:</strong> {reserva.nomeCliente}
+                </div>
+                <div>
+                  <strong>Email:</strong> {reserva.email}
+                </div>
+                <div>
+                  <strong>Telefone:</strong> {reserva.telefone}
+                </div>
+                <div>
+                  <strong>Data:</strong> {formatarData(reserva.data)}
+                </div>
+                <div>
+                  <strong>Horário:</strong> {formatarHorario(reserva.horario)}
+                </div>
+                <div>
+                  <strong>Status:</strong> {reserva.status}
+                </div>
+                <div>
+                  <strong>Número de Pessoas:</strong> {reserva.numeroPessoas}
+                </div>
+                <div>
+                  <strong>Observações:</strong>{" "}
+                  {reserva.observacoes || "Nenhuma observação"}
+                </div>
+                <div>
+                  <strong>Horário previsto para o fim:</strong>{" "}
+                  {reserva.horarioFim
+                    ? new Date(reserva.horarioFim).toLocaleTimeString("pt-BR", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : "Não especificado"}
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="mt-6 text-gray-600 text-center">
+            Nenhuma reserva encontrada.
+          </div>
+        )}
+      </div>
     </div>
   );
 };

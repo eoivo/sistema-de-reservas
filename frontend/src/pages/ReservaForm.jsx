@@ -71,111 +71,117 @@ function ReservaForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Fazer Reserva</h1>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label className="block text-gray-700 mb-2">Nome</label>
-          <input
-            type="text"
-            name="nomeCliente"
-            value={formData.nomeCliente}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 mb-2">Telefone</label>
-          <input
-            type="tel"
-            name="telefone"
-            value={formData.telefone}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 mb-2">Data</label>
-          <DatePicker
-            selected={formData.data}
-            onChange={(date) =>
-              setFormData((prev) => ({ ...prev, data: date }))
-            }
-            dateFormat="dd/MM/yyyy"
-            locale={ptBR}
-            minDate={new Date()}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 mb-2">Horário</label>
-          <select
-            name="horario"
-            value={formData.horario}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          >
-            <option value="">Selecione um horário</option>
-            {horarios.map((horario) => (
-              <option key={horario} value={horario}>
-                {horario}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-gray-700 mb-2">Número de Pessoas</label>
-          <input
-            type="number"
-            name="numeroPessoas"
-            value={formData.numeroPessoas}
-            onChange={handleChange}
-            min="1"
-            max="20"
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 mb-2">Observações</label>
-          <textarea
-            name="observacoes"
-            value={formData.observacoes}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            rows="3"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-primary-600 text-white py-2 px-4 rounded hover:bg-primary-700 transition-colors"
-        >
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-4xl mx-auto bg-opacity-90 bg-white p-8 rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold text-primary-600 mb-6">
           Fazer Reserva
-        </button>
-      </form>
+        </h1>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-gray-700 mb-2">Nome</label>
+            <input
+              type="text"
+              name="nomeCliente"
+              value={formData.nomeCliente}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">Telefone</label>
+            <input
+              type="tel"
+              name="telefone"
+              value={formData.telefone}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">Data</label>
+            <DatePicker
+              selected={formData.data}
+              onChange={(date) =>
+                setFormData((prev) => ({ ...prev, data: date }))
+              }
+              dateFormat="dd/MM/yyyy"
+              locale={ptBR}
+              minDate={new Date()}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">Horário</label>
+            <select
+              name="horario"
+              value={formData.horario}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            >
+              <option value="">Selecione um horário</option>
+              {horarios.map((horario) => (
+                <option key={horario} value={horario}>
+                  {horario}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">
+              Número de Pessoas
+            </label>
+            <input
+              type="number"
+              name="numeroPessoas"
+              value={formData.numeroPessoas}
+              onChange={handleChange}
+              min="1"
+              max="20"
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">Observações</label>
+            <textarea
+              name="observacoes"
+              value={formData.observacoes}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+              rows="3"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-primary-600 text-white py-2 px-4 rounded hover:bg-primary-700 transition-colors"
+          >
+            Fazer Reserva
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

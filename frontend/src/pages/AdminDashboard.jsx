@@ -58,7 +58,6 @@ const AdminDashboard = () => {
   };
 
   const handleDelete = async (id) => {
-    // Exibe a confirmação de exclusão
     const confirmDelete = window.confirm(
       "Você tem certeza que deseja excluir esta reserva?"
     );
@@ -104,42 +103,46 @@ const AdminDashboard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
-
     toast.success("Você foi desconectado com sucesso!");
-
     navigate("/admin");
   };
 
   return (
-    <div className="admin-dashboard-container">
-      <h2 className="text-2xl font-bold">Dashboard de Reservas</h2>
-
-      <button
-        onClick={handleLogout}
-        className="p-2 bg-red-500 text-white rounded mb-4"
-      >
-        Sair
-      </button>
+    <div className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-3xl font-bold text-primary-600">
+          Dashboard de Reservas
+        </h2>
+        <button
+          onClick={handleLogout}
+          className="p-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md"
+        >
+          Sair
+        </button>
+      </div>
 
       {loading ? (
-        <div>Carregando reservas...</div>
+        <div className="text-center text-gray-500">Carregando reservas...</div>
       ) : (
         <div>
-          {Array.isArray(reservations) && reservations.length > 0 ? (
-            <ul className="mt-6 space-y-4">
+          {reservations.length > 0 ? (
+            <ul className="space-y-6">
               {reservations.map((reserva) => (
                 <li
                   key={reserva._id}
-                  className="border p-4 mb-4 rounded bg-gray-50 shadow-md"
+                  className="border p-6 rounded-lg bg-gray-50 shadow-md hover:shadow-xl transition-shadow"
                 >
-                  <h3 className="text-lg font-bold text-primary-600">
-                    Detalhes da Reserva
+                  <h3 className="text-xl font-bold text-primary-600 mb-4">
+                    {reserva.nomeCliente}
                   </h3>
 
                   {editMode === reserva._id ? (
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       <div>
-                        <label htmlFor="nomeCliente" className="block">
+                        <label
+                          htmlFor="nomeCliente"
+                          className="block text-sm text-gray-600"
+                        >
                           Nome do Cliente
                         </label>
                         <input
@@ -148,12 +151,15 @@ const AdminDashboard = () => {
                           name="nomeCliente"
                           value={reserva.nomeCliente}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="email" className="block">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm text-gray-600"
+                        >
                           E-mail
                         </label>
                         <input
@@ -162,12 +168,15 @@ const AdminDashboard = () => {
                           name="email"
                           value={reserva.email}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="telefone" className="block">
+                        <label
+                          htmlFor="telefone"
+                          className="block text-sm text-gray-600"
+                        >
                           Telefone
                         </label>
                         <input
@@ -176,26 +185,32 @@ const AdminDashboard = () => {
                           name="telefone"
                           value={reserva.telefone}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="data" className="block">
+                        <label
+                          htmlFor="data"
+                          className="block text-sm text-gray-600"
+                        >
                           Data
                         </label>
                         <input
                           type="date"
                           id="data"
                           name="data"
-                          value={reserva.data.split("T")[0]} // Remove a parte da hora
+                          value={reserva.data.split("T")[0]}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="horario" className="block">
+                        <label
+                          htmlFor="horario"
+                          className="block text-sm text-gray-600"
+                        >
                           Horário
                         </label>
                         <input
@@ -204,12 +219,15 @@ const AdminDashboard = () => {
                           name="horario"
                           value={reserva.horario || ""}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="status" className="block">
+                        <label
+                          htmlFor="status"
+                          className="block text-sm text-gray-600"
+                        >
                           Status
                         </label>
                         <select
@@ -217,7 +235,7 @@ const AdminDashboard = () => {
                           name="status"
                           value={reserva.status}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         >
                           <option value="pendente">Pendente</option>
                           <option value="confirmada">Confirmada</option>
@@ -226,7 +244,10 @@ const AdminDashboard = () => {
                       </div>
 
                       <div>
-                        <label htmlFor="numeroPessoas" className="block">
+                        <label
+                          htmlFor="numeroPessoas"
+                          className="block text-sm text-gray-600"
+                        >
                           Número de Pessoas
                         </label>
                         <input
@@ -235,12 +256,15 @@ const AdminDashboard = () => {
                           name="numeroPessoas"
                           value={reserva.numeroPessoas}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="observacoes" className="block">
+                        <label
+                          htmlFor="observacoes"
+                          className="block text-sm text-gray-600"
+                        >
                           Observações
                         </label>
                         <textarea
@@ -248,22 +272,19 @@ const AdminDashboard = () => {
                           name="observacoes"
                           value={reserva.observacoes || ""}
                           onChange={(e) => handleChange(e, reserva._id)}
-                          className="mt-2 p-2 border border-gray-300 rounded w-full"
+                          className="mt-2 p-2 w-full border border-gray-300 rounded"
                         />
                       </div>
 
                       <button
                         onClick={() => handleEditSubmit(reserva._id, reserva)}
-                        className="p-2 bg-primary-500 text-white rounded"
+                        className="mt-4 p-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
                       >
                         Salvar
                       </button>
                     </div>
                   ) : (
                     <div>
-                      <div>
-                        <strong>Nome do Cliente:</strong> {reserva.nomeCliente}
-                      </div>
                       <div>
                         <strong>E-mail:</strong> {reserva.email}
                       </div>
@@ -288,27 +309,27 @@ const AdminDashboard = () => {
                         <strong>Observações:</strong>{" "}
                         {reserva.observacoes || "Nenhuma observação"}
                       </div>
-                      <button
-                        onClick={() => setEditMode(reserva._id)}
-                        className="p-2 bg-yellow-500 text-white rounded mr-2"
-                      >
-                        Editar
-                      </button>
-                      <button
-                        onClick={() => handleDelete(reserva._id)}
-                        className="p-2 bg-red-500 text-white rounded"
-                      >
-                        Excluir
-                      </button>
+                      <div className="mt-4 space-x-4">
+                        <button
+                          onClick={() => setEditMode(reserva._id)}
+                          className="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
+                        >
+                          Editar
+                        </button>
+                        <button
+                          onClick={() => handleDelete(reserva._id)}
+                          className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                        >
+                          Excluir
+                        </button>
+                      </div>
                     </div>
                   )}
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="mt-6 text-gray-500">
-              Não há reservas para mostrar.
-            </div>
+            <div className="text-gray-500">Não há reservas para mostrar.</div>
           )}
         </div>
       )}

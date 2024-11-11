@@ -8,7 +8,8 @@
     "dev": "nodemon src/server.js",
     "test": "jest",
     "lint": "eslint src/**/*.js",
-    "seed": "node src/config/seedDatabase.js"
+    "seed": "node src/config/seedDatabase.js",
+    "build": "echo 'Build step not required for backend'"
   },
   "keywords": [
     "restaurant",

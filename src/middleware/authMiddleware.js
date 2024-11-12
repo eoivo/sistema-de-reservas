@@ -9,7 +9,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Adiciona os dados do usuário ao objeto req
+    req.user = decoded;
     next();
   } catch (error) {
     return res.status(401).json({ message: "Token inválido" });

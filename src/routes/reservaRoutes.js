@@ -15,8 +15,6 @@ router
 
 router.get("/reservas/buscar", reservaController.buscarReserva);
 
-router
-  .route("/reservas/admin") // Aqui você coloca o prefixo "admin"
-  .get(reservaController.listarReservas);
+router.route("/reservas/admin").get(reservaController.listarReservas);
 
 module.exports = router;

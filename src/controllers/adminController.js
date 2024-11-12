@@ -4,7 +4,6 @@ const User = require("../models/userModel");
 const createAdmin = async (req, res) => {
   const { username, password } = req.body;
 
-  // Validação de entrada
   if (!username || !password) {
     return res
       .status(400)
@@ -12,24 +11,20 @@ const createAdmin = async (req, res) => {
   }
 
   try {
-    // Verificar se o usuário admin já existe
     const adminExists = await User.findOne({ role: "admin" });
     if (adminExists) {
       return res.status(400).json({ message: "Já existe um admin" });
     }
 
-    // Hash da senha antes de salvar no banco
-    const salt = await bcrypt.genSalt(10); // Geração de salt
-    const hashedPassword = await bcrypt.hash(password, salt); // Hashing da senha
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Criar o novo usuário admin
     const user = new User({
       username,
-      password: hashedPassword, // Armazenando a senha criptografada
-      role: "admin", // Definindo o papel como admin
+      password: hashedPassword,
+      role: "admin",
     });
 
-    // Salvar o usuário no banco
     await user.save();
 
     res.status(201).json({ message: "Admin criado com sucesso!" });

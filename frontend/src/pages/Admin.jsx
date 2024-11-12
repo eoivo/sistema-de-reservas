@@ -46,45 +46,65 @@ const Admin = () => {
   };
 
   return (
-    <div className="admin-login-container">
-      <h2>Entrar como Administrador</h2>
-      <form onSubmit={handleLogin} className="space-y-4">
-        <div>
-          <label htmlFor="username" className="block">
-            Nome de usuário
-          </label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="mt-2 p-2 border border-gray-300 rounded w-full"
-            placeholder="Digite seu nome de usuário"
-          />
-        </div>
+    <div className="flex items-center justify-center min-h-screen bg-transparent">
+      <div className="max-w-sm w-full bg-white p-8 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-bold text-primary-600 mb-6 text-center">
+          Entrar como Administrador
+        </h2>
 
-        <div>
-          <label htmlFor="password" className="block">
-            Senha
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mt-2 p-2 border border-gray-300 rounded w-full"
-            placeholder="Digite sua senha"
-          />
-        </div>
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div>
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-600"
+            >
+              Nome de usuário
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Digite seu nome de usuário"
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="mt-4 p-2 bg-primary-500 text-white rounded"
-          disabled={loading}
-        >
-          {loading ? "Entrando..." : "Entrar"}
-        </button>
-      </form>
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-600"
+            >
+              Senha
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Digite sua senha"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="mt-6 p-3 w-full bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-600 focus:ring-4 focus:ring-primary-500 transition-colors"
+            disabled={loading}
+          >
+            {loading ? "Entrando..." : "Entrar"}
+          </button>
+        </form>
+
+        <div className="mt-4 text-center text-sm text-gray-500">
+          <p>
+            Não tem uma conta?{" "}
+            <a href="/register" className="text-primary-500 hover:underline">
+              Criar uma conta
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

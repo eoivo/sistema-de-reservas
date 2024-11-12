@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     port: 5173,
   },
-  // Adicione isso para lidar com as rotas do React Router
+
   preview: {
     host: true,
     port: 5173,

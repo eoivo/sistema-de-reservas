@@ -7,7 +7,7 @@ import Admin from "./pages/Admin";
 import BuscarReservas from "./pages/BuscarReservas";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import backgroundImage from "../public/restaurant-background.jpg";
+import backgroundImage from "./assets/restaurant-background.jpg";
 
 function App() {
   return (

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow mt-6 md:mt-10">
+    <div className="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow mt-6 md:mt-10 opacity-90">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6 text-center">
         Bem-vindo ao Nosso Restaurante
       </h1>

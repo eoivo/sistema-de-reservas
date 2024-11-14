@@ -7,13 +7,23 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-};
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://sistema-de-reservas-front.onrender.com",
+];
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/reservas", reservaRoutes);

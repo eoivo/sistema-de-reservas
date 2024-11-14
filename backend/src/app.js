@@ -7,14 +7,17 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
 
-app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:5173" }));
+app.use(cors(corsOptions));
+app.use(express.json());
 
 app.use("/api/reservas", reservaRoutes);
 app.use("/api/admin", adminRoutes);
-
 app.use("/api/auth", authRoutes);
 
 app.use(errorHandler);

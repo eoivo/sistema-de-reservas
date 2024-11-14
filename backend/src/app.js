@@ -25,13 +25,7 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, "build")));
-
 app.use(express.json());
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 
 app.use("/api/reservas", reservaRoutes);
 app.use("/api/admin", adminRoutes);

@@ -11,7 +11,7 @@ import backgroundImage from "./assets/restaurant-background.jpg";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/frontend">
       <div
         className="min-h-screen bg-cover bg-center bg-no-repeat"
         style={{

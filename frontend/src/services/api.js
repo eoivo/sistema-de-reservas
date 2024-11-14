@@ -3,7 +3,7 @@ import axios from "axios";
 const api = axios.create({
   baseURL:
     import.meta.env.VITE_API_URL ||
-    "VITE_API_URL=https://sistema-de-reservas.onrender.com",
+    "VITE_API_URL=https://sistema-de-reservas.onrender.com/api",
 });
 console.log("Base URL:", import.meta.env.VITE_API_URL);
 export const reservaService = {
